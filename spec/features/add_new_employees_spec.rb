@@ -15,6 +15,8 @@ feature 'Adding employees' do
 
     expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
 
+    visit '/employees'
+
     within("#employee_table") do
       expect(page).to have_content('Bob')
       expect(page).to have_content('Ross')
@@ -38,6 +40,8 @@ feature 'Adding employees' do
     click_button 'Add Employee'
 
     expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
+
+    visit '/employees'
 
     within("#employee_table") do
       expect(page).to have_content(employee.first_name)
