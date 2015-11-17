@@ -11,7 +11,7 @@ feature 'Adding employees' do
     fill_in 'Email', with: 'bob.ross@pbs.org'
     fill_in 'Employee Number', with: '07041995'
 
-    click_link 'Add Employee'
+    click_button 'Add Employee'
 
     expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
 
@@ -35,7 +35,7 @@ feature 'Adding employees' do
     fill_in 'Email', with: 'bob.ross@pbs.org'
     fill_in 'Employee Number', with: '07041995'
 
-    click_link 'Add Employee'
+    click_button 'Add Employee'
 
     expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
 
