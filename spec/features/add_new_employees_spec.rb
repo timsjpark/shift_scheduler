@@ -13,7 +13,7 @@ feature 'Adding employees' do
 
     click_button 'Add Employee'
 
-    expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
+    expect(page).to have_content "Bob Ross was added on #{Time.new.strftime('%m/%d/%Y')}"
 
     visit '/employees'
 
@@ -39,7 +39,7 @@ feature 'Adding employees' do
 
     click_button 'Add Employee'
 
-    expect(page).to have_content "Bob Ross was hired on #{Time.new.strftime('%m/%d/%Y')}"
+    expect(page).to have_content "Bob Ross was added on #{Time.new.strftime('%m/%d/%Y')}"
 
     visit '/employees'
 
