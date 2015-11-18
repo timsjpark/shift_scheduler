@@ -8,6 +8,7 @@ Team Members:
 
   Tim Park
   Nyla Logsden-Sackett
+  Ryan T. Nance
 
 Features:
 
