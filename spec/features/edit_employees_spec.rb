@@ -28,7 +28,7 @@ feature 'Editing employees' do
       expect(page).to have_content('Smith')
       expect(page).to have_content('julia@smith.com')
       expect(page).to have_content('07041995')
-      expect(page).to have_content('11/17/2015')
+      expect(page).to have_content("#{Time.new.strftime('%m/%d/%Y')}")
     end
 
     # Need to add hire date to the scaffold

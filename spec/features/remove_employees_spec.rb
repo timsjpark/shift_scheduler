@@ -17,8 +17,8 @@ feature 'Removing employees' do
       expect(page).to have_content(employee.last_name)
       expect(page).to have_content(employee.email)
       expect(page).to have_content(employee.employee_number)
-      expect(page).to have_content(employee.hire_date)
-      expect(page).to have_content(employee.removal_date)
+      expect(page).to have_content(employee.hire_date.strftime('%m/%d/%Y'))
+      expect(page).to have_content(Time.new.strftime('%m/%d/%Y'))
     end
   end
 end
