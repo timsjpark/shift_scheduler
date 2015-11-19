@@ -58,7 +58,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee.destroy
+    @employee.update_attribute(:removal_date, Date.today)
     respond_to do |format|
       format.html { redirect_to employees_url,
         notice: "#{@employee.first_name} #{@employee.last_name} was removed."
