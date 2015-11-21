@@ -39,6 +39,22 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def signup
+    @employee = Employee.new(employee_params)
+
+    respond_to do |format|
+      if @employee.save
+        format.html { redirect_to @employee,
+          notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
+        }
+        format.json { render :show, status: :created, location: @employee }
+      else
+        format.html { render :new }
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /employees/1
   # PATCH/PUT /employees/1.json
   def update
@@ -75,6 +91,7 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :email, :employee_number)
+      params.require(:employee).permit(:first_name, :last_name, :email,
+        :employee_number, :password, :password_confirmation)
     end
 end
