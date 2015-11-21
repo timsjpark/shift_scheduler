@@ -10,6 +10,8 @@ feature 'Adding employees' do
     fill_in 'Last Name', with: 'Ross'
     fill_in 'Email', with: 'bob.ross@pbs.org'
     fill_in 'Employee Number', with: '07041995'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password Confirmation', with: 'password'
 
     click_button 'Add Employee'
 
@@ -36,6 +38,8 @@ feature 'Adding employees' do
     fill_in 'Last Name', with: 'Ross'
     fill_in 'Email', with: 'bob.ross@pbs.org'
     fill_in 'Employee Number', with: '07041995'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password Confirmation', with: 'password'
 
     click_button 'Add Employee'
 

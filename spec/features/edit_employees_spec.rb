@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'Editing employees' do
   scenario 'should allow a user to edit exisiting employees' do
     Employee.create(first_name: 'Bob', last_name: 'Boss',
-      email: 'bob.ross@pbs.org', employee_number: '07041995'
+      email: 'bob.ross@pbs.org', employee_number: '07041995',
+      password: 'password', password_confirmation: 'password'
     )
 
     visit '/employees'
