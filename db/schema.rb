@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20151118232848) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-11-18'
+    t.date     "hire_date",       default: '2015-11-19'
     t.date     "removal_date"
   end
 
