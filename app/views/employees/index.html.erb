@@ -15,6 +15,7 @@
       <th>Email</th>
       <th>Employee number</th>
       <th>Hire date</th>
+      <th>Removal date</th>
       <th></th>
       <th></th>
       <th></th>
@@ -28,9 +29,14 @@
         <td><%= employee.email %></td>
         <td><%= employee.employee_number %></td>
         <td><%= employee.hire_date.strftime('%m/%d/%Y') %></td>
+        <% if employee.removal_date == nil %>
+            <td>N/A</td>
+        <% else %>
+            <td><%= employee.removal_date.strftime('%m/%d/%Y') %></td>
+        <% end %>
         <td><%= link_to 'Show', employee %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to 'Remove', employee, method: :delete, data: {confirm: 'Are you sure?'} %></td>
     <% end %>
     </tbody>
   </table>
