@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee,
-          notice: "#{@employee.first_name} #{@employee.last_name} was added on #{Time.new.strftime('%m/%d/%Y')}"
+          notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
         }
         format.json { render :show, status: :created, location: @employee }
       else

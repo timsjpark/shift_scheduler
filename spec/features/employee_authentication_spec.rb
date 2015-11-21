@@ -14,9 +14,9 @@ feature 'User Authentication' do
     fill_in 'Password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
 
-    click_button('Signup')
+    click_button('Add Employee')
 
-    expect(page).to have_text('Thank you for signing up')
+    expect(page).to have_text("Bob Smith was added on #{Time.new.strftime('%m/%d/%Y')}")
     expect(page).to have_text('Signed in as bob@smith.com')
 
     # And I click 'Logout'
