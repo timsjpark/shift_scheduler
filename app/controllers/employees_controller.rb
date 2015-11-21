@@ -17,6 +17,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
   end
 
+  def new_signup
+    @employee = Employee.new
+  end
+
   # GET /employees/1/edit
   def edit
   end

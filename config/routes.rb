@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get 'signup' => 'employees#signup'
+  get 'signup' => 'employees#new_signup', as: 'new_signup'
+  post '/employees' => 'employees#signup', as: 'signup'
 
 end
