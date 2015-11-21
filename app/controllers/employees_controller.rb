@@ -49,7 +49,7 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee,
-          notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
+          notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}"
         }
         format.json { render :show, status: :created, location: @employee }
       else
@@ -88,14 +88,16 @@ class EmployeesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee
-      @employee = Employee.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_employee
+    @employee = Employee.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def employee_params
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def employee_params
+    if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
         :employee_number, :password, :password_confirmation)
     end
+  end
 end
