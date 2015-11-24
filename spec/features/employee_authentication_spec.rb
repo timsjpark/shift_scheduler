@@ -18,18 +18,6 @@ feature 'User Authentication' do
 
     expect(page).to have_text("Thank you for signing up Bob Smith")
     expect(page).to have_text('Signed in as bob@smith.com')
-
-
-    # And I click 'Logout'
-    #
-    # And I should see 'Bob Smith has successfully logged out'
-    #
-    # And I click 'Login'
-    #
-    # And I fill in email with bob@smith.com
-    # And I fill in Password with password
-    #
-    # I should see 'Welcome back Bob Smith'
   end
 
   scenario 'allows a user login' do
@@ -48,5 +36,24 @@ feature 'User Authentication' do
 
     expect(page).to have_text("Welcome back #{employee.first_name}")
     expect(page).to have_text("Signed in as #{employee.email}")
+  end
+
+  scenario 'do not allow a user login with invalid email or password' do
+    employee = FactoryGirl.create(:employee, password: 'password')
+
+    visit '/'
+
+    expect(page).to have_link('Login')
+
+    click_link('Login')
+
+    fill_in 'Email', with: employee.email
+    fill_in 'Password', with: "INVALID_PASSWORD"
+
+    click_button('Login')
+
+    expect(page).to have_text("Invalid email or password")
+    expect(page).to_not have_text("Welcome back #{employee.first_name}")
+    expect(page).to_not have_text("Signed in as #{employee.email}")
   end
 end
