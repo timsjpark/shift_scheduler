@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   get 'signup' => 'employees#new_signup', as: 'new_signup'
   post '/employees' => 'employees#signup', as: 'signup'
+  get 'login' => 'sessions#login', as: 'login'
 
 end
