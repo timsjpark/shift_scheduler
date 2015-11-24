@@ -41,11 +41,7 @@ feature 'User Authentication' do
   scenario 'do not allow a user login with invalid email or password' do
     employee = FactoryGirl.create(:employee, password: 'password')
 
-    visit '/'
-
-    expect(page).to have_link('Login')
-
-    click_link('Login')
+    visit login_path
 
     fill_in 'Email', with: employee.email
     fill_in 'Password', with: "INVALID_PASSWORD"
@@ -53,6 +49,27 @@ feature 'User Authentication' do
     click_button('Login')
 
     expect(page).to have_text("Invalid email or password")
+    expect(page).to_not have_text("Welcome back #{employee.first_name}")
+    expect(page).to_not have_text("Signed in as #{employee.email}")
+  end
+
+  scenario 'allow logging in user to logout' do
+    employee = FactoryGirl.create(:employee)
+
+    visit login_path
+
+    fill_in 'Email', with: employee.email
+    fill_in 'Password', with: employee.password
+
+    click_button('Login')
+
+    expect(page).to have_text("Signed in as #{employee.email}")
+
+    expect(page).to have_link('Logout')
+
+    clink_link 'Logout'
+
+    expect(page).to have_content("#{employee.email} has been logged out")
     expect(page).to_not have_text("Welcome back #{employee.first_name}")
     expect(page).to_not have_text("Signed in as #{employee.email}")
   end
