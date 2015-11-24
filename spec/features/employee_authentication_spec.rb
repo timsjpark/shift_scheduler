@@ -19,6 +19,7 @@ feature 'User Authentication' do
     expect(page).to have_text("Thank you for signing up Bob Smith")
     expect(page).to have_text('Signed in as bob@smith.com')
 
+
     # And I click 'Logout'
     #
     # And I should see 'Bob Smith has successfully logged out'
@@ -29,5 +30,21 @@ feature 'User Authentication' do
     # And I fill in Password with password
     #
     # I should see 'Welcome back Bob Smith'
+  end
+
+  scenario 'allows a user log' do
+    visit '/'
+
+    expect(page).to have_link('Login')
+
+    click_link('Login')
+
+    fill_in 'Email', with: 'bob@smith.com'
+    fill_in 'Password', with: 'password'
+
+    click_button('Login')
+
+    expect(page).to have_text("Welcome back Bob")
+    expect(page).to have_text('Signed in as bob@smith.com')
   end
 end
