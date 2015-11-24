@@ -1,0 +1,65 @@
+.right {
+  position: absolute;
+  right: 5px;
+  width: 80px;
+  border:3px solid #73AD21;
+  padding: 10px;
+}
+
+.right1 {
+  position:absolute;
+  right:110px;
+  width:80px;
+  border:3px solid #73AD21;
+  padding:10px;
+}
+
+.center {
+  margin: auto;
+  position: absolute;
+  width: 100px;
+  border: 3px solid #73AD21;
+  padding: 20px;
+}
+.calendar_image {
+  background-image: url("mayan_calendar2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 700px;
+  opacity: 0.9;
+}
+.transbox {
+  margin: 60px;
+  background-color: white;
+  border: 1px none;
+  opacity: 1.4;
+  filter: alph(opacity=6);
+  padding: 9px;
+}
+
+.title_text {
+  font-family: "Times New Roman", serif;
+  color: black;
+  text-align: center;
+  font-size: 100px;
+  opacity: 200%;
+}
+.title_text2 {
+  font-family: "Times New Roman", serif;
+  color: darkslategrey;
+  text-align: center;
+  font-size: 40px;
+  opacity: 80%;
+}
+#transbox {
+  margin-left: 4.8cm;
+  margin-right: 4.5cm;
+  background-color: white;
+  border: 1px none;
+  opacity: .8;
+  font-size: 25px;
+  text-align: left;
+  color: darkslategrey;
+}
+

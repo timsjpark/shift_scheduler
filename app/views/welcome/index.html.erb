@@ -1,1 +1,43 @@
-Welcome to our awesome site
+<p>
+  <br>
+<head>
+  <img src="images/mayan_calendar.jpg" style="width:20px;height:20px">
+  <h1 class="title_text"> <strong>Shift Scheduler</strong></h1>
+  <br><br>
+  <h2 class="transbox">
+  <div class="title_text2"
+  <em><strong>Schedule your shifts the easy way</strong></em>
+  </div>
+</h2>
+</head>
+<body class="calendar_image">
+<div id="transbox">
+  <ul>
+    <li>Optional drag-and-drop scheduling tools.</li>
+    <li>Auto-email weekly schedules to each employee.</li>
+    <li>Pro facer senserit te, cu maiorum delicata vis.</li>
+    <li>At corpora laboramus per, quot sonet ius id.</li>
+</div>
+</body>
+
+<!--class Employee-->
+  <!--has_many :roles-->
+<!--end-->
+
+<!--class Organization-->
+  <!--has_many :roles-->
+<!--end-->
+
+<!--class Role-->
+  <!--belongs_to :organization, :employee-->
+<!--end-->
+
+<!--class Ability-->
+  <!--if user.role?(:employee)-->
+    <!--can :show, :schedule-->
+  <!--end-->
+
+  <!--if user.role?(:admin)-->
+    <!--can :manage, :all-->
+  <!--end-->
+<!--end-->
