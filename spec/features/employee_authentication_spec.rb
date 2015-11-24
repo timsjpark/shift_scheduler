@@ -32,19 +32,21 @@ feature 'User Authentication' do
     # I should see 'Welcome back Bob Smith'
   end
 
-  scenario 'allows a user log' do
+  scenario 'allows a user login' do
+    employee = FactoryGirl.create(:employee)
+
     visit '/'
 
     expect(page).to have_link('Login')
 
     click_link('Login')
 
-    fill_in 'Email', with: 'bob@smith.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: employee.email
+    fill_in 'Password', with: employee.password
 
     click_button('Login')
 
-    expect(page).to have_text("Welcome back Bob")
-    expect(page).to have_text('Signed in as bob@smith.com')
+    expect(page).to have_text("Welcome back #{employee.first_name}")
+    expect(page).to have_text("Signed in as #{employee.email}")
   end
 end
