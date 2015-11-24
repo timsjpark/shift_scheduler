@@ -67,7 +67,7 @@ feature 'User Authentication' do
 
     expect(page).to have_link('Logout')
 
-    clink_link 'Logout'
+    click_link 'Logout'
 
     expect(page).to have_content("#{employee.email} has been logged out")
     expect(page).to_not have_text("Welcome back #{employee.first_name}")
