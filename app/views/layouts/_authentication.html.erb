@@ -1,1 +1,5 @@
-<%= link_to 'Signup', new_signup_path %>
+<% if current_employee  %>
+    Signed in as <%= current_employee.email %>
+<% else %>
+    <%= link_to 'Signup', new_employee_path %>
+<% end %>

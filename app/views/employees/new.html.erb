@@ -1,9 +1,13 @@
 <div class="page-header">
   <%= link_to employees_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
   <% end %>
-  <h1>New employee</h1>
+  <% if current_employee %>
+      <h1>New employee</h1>
+  <% else %>
+      <h1>Signup</h1>
+  <% end %>
 </div>
 
 <%= render 'form' %>
