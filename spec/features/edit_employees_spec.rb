@@ -2,12 +2,25 @@ require 'rails_helper'
 
 feature 'Editing employees' do
   scenario 'should allow a user to edit exisiting employees' do
-    Employee.create(first_name: 'Bob', last_name: 'Boss',
-      email: 'bob.ross@pbs.org', employee_number: '07041995',
-      password: 'password', password_confirmation: 'password'
-    )
+    employee = FactoryGirl.create(:employee)
+
+    visit login_path
+
+    fill_in 'Email', with: employee.email
+    fill_in 'Password', with: employee.password
+
+    click_button('Login')
+
+    expect(page).to have_text("Signed in as #{employee.email}")
 
     visit '/employees'
+
+    within("#employee_table") do
+      expect(page).to have_content(employee.first_name)
+      expect(page).to have_content(employee.last_name)
+      expect(page).to have_content(employee.email)
+      expect(page).to have_content(employee.employee_number)
+    end
 
     click_link 'Edit'
 
@@ -28,8 +41,8 @@ feature 'Editing employees' do
       expect(page).to have_content('Julia')
       expect(page).to have_content('Smith')
       expect(page).to have_content('julia@smith.com')
-      expect(page).to have_content('07041995')
-      expect(page).to have_content("#{Time.new.strftime('%m/%d/%Y')}")
+      expect(page).to have_content("#{employee.employee_number}")
+      # expect(page).to have_content("#{Time.new.strftime('%m/%d/%Y')}") Not sure if view should have updated date in table
     end
 
     # Need to add hire date to the scaffold
