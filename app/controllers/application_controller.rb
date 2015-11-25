@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_employee)
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:danger] = exception.message
+    redirect_to root_url
+  end
+
   private
 
   def current_employee
