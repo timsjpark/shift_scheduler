@@ -28,10 +28,20 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee,
-          notice: "#{@employee.first_name} #{@employee.last_name} was added on #{Time.new.strftime('%m/%d/%Y')}"
-        }
-        format.json { render :show, status: :created, location: @employee }
+        if current_employee
+          # If employee is logged in, notice should say you added employees to table
+          format.html { redirect_to @employee,
+                                    notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
+          }
+          format.json { render :show, status: :created, location: @employee }
+        else
+          # If employee is not logged in, notice should say you just signed up
+          session[:id] = @employee.id
+          format.html { redirect_to @employee,
+                                    notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}"
+          }
+          format.json { render :show, status: :created, location: @employee }
+        end
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
@@ -39,13 +49,11 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /employees/1
-  # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
       if @employee.update(employee_params)
         format.html { redirect_to @employee,
-          notice: "#{@employee.first_name} #{@employee.last_name} was updated"
+                                  notice: "#{@employee.first_name} #{@employee.last_name} was updated"
         }
         format.json { render :show, status: :ok, location: @employee }
       else
@@ -61,20 +69,23 @@ class EmployeesController < ApplicationController
     @employee.update_attribute(:removal_date, Date.today)
     respond_to do |format|
       format.html { redirect_to employees_url,
-        notice: "#{@employee.first_name} #{@employee.last_name} was removed."
+                                notice: "#{@employee.first_name} #{@employee.last_name} was removed."
       }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee
-      @employee = Employee.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_employee
+    @employee = Employee.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :email, :employee_number)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def employee_params
+    if params[:employee]
+      params.require(:employee).permit(:first_name, :last_name, :email,
+                                       :employee_number, :password, :password_confirmation)
     end
+  end
 end
