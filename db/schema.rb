@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121184605) do
+ActiveRecord::Schema.define(version: 20151125042013) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20151121184605) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-11-21'
+    t.date     "hire_date",       default: '2015-11-24'
     t.date     "removal_date"
     t.string   "password_digest"
+    t.string   "type",            default: "Employee"
   end
 
 end

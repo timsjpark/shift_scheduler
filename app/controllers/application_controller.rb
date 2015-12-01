@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_employee
 
+  # change the default cancancan method to account for employee vs. user model
+  def current_ability
+    @current_ability ||= Ability.new(current_employee)
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:danger] = exception.message
+    redirect_to root_url
+  end
+
   private
 
   def current_employee
