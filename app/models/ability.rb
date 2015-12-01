@@ -8,7 +8,7 @@ class Ability
     if employee.manager?
       can :manage, :all
     else
-      can :read, :all
+      can [:create, :show], Employee
     end
   end
     # Define abilities for the passed in user here. For example:
