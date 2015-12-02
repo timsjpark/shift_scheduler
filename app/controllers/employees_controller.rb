@@ -53,6 +53,7 @@ class EmployeesController < ApplicationController
           }
         end
         format.json { render :show, status: :created, location: @employee }
+        @employee.schedule = Schedule.new
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
