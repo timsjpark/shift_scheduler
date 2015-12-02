@@ -15,10 +15,10 @@
   <dd><%= @shift.shift_description %></dd>
 
   <dt>Start time:</dt>
-  <dd><%= @shift.start_time %></dd>
+  <dd><%= @shift.start_time.strftime('%a, %b %d - %I:%M %p') %></dd>
 
   <dt>End time:</dt>
-  <dd><%= @shift.end_time %></dd>
+  <dd><%= @shift.end_time.strftime('%a, %b %d - %I:%M %p') %></dd>
 
   <dt>Assigned to:</dt>
   <dd><%= "#{@shift.schedule.employee.first_name} #{@shift.schedule.employee.last_name}" %></dd>
