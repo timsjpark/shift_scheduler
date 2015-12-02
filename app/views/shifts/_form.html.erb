@@ -33,7 +33,6 @@
   <div class="form-group">
     <%= f.label :schedule_id, 'Assigned to', class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <!--<%= f.text_field :schedule_id, class: "form-control" %>-->
       <%= f.collection_select(:schedule_id, Schedule.all, :id, :employee_name) %>
     </div>
   </div>
