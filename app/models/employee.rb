@@ -1,4 +1,7 @@
 class Employee < ActiveRecord::Base
+  has_one :schedule
+  has_many :shifts, through: :schedule
+
   has_secure_password
   validates_presence_of :first_name, :last_name, :email
   validates :email, format: { with: /@/ }
