@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202003651) do
+ActiveRecord::Schema.define(version: 20151202075127) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20151202003651) do
 
   create_table "shifts", force: :cascade do |t|
     t.string   "shift_description"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "schedule_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
