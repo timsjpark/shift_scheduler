@@ -20,7 +20,7 @@
   <dt>End time:</dt>
   <dd><%= @shift.end_time %></dd>
 
-  <dt>Schedule:</dt>
-  <dd><%= @shift.schedule %></dd>
+  <dt>Assigned to:</dt>
+  <dd><%= "#{@shift.schedule.employee.first_name} #{@shift.schedule.employee.last_name}" %></dd>
 
 </dl>
