@@ -35,7 +35,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <% #if current_employee.present? %>
-        <% if @employee.persisted? %>
+        <% if @employee && @employee.persisted? %>
             <li><%= link_to 'Schedule', schedule_path(current_employee) %></li>
         <% end %>
         <% if can? :manage, :all %>
