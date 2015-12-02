@@ -1,0 +1,2 @@
+class ManagersController < EmployeesController
+end
