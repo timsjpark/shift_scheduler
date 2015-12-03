@@ -1,13 +1,21 @@
-<div class="page-header">
-  <%= link_to employees_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-list-alt"></span>
-      Back
-  <% end %>
-  <% if current_employee %>
-      <h1>New employee</h1>
-  <% else %>
-      <h1>Signup</h1>
-  <% end %>
-</div>
+<div class="jumbotron">
+  <div class="row">
+    <% unless @employee.omniauth? %>
+        <div class="col-xs-6 center-block">
+          <%= image_tag('google.png', class: 'img-responsive') %>
+          <%= link_to button_tag('Sign up via Google', class: 'btn-auth btn-google'), '/auth/google' %>
+        </div>
+        <div class="col-xs-4 col-xs-offset-2">
+          <h1>Signup</h1>
+        </div>
+    <% else %>
+        <div class="col-xs-10 col-xs-offset-2 center-block">
+          <h1>Verify Details</h1>
+        </div>
+    <% end %>
 
-<%= render 'form' %>
+    <%= render 'employees/form' %>
+
+    <%= link_to 'Back', root_path %>
+  </div>
+</div>
