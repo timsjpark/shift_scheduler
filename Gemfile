@@ -4,6 +4,8 @@ ruby '2.2.3'
 
 gem 'bootstrap-generators'
 gem 'cancancan', '~> 1.10'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
