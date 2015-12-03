@@ -41,14 +41,14 @@ class EmployeesController < ApplicationController
           }
         elsif @employee.type == 'Manager'
           # If employee is not logged in, notice should say you just signed up
-          # session[:id] = @employee.id
+          session[:id] = @employee.id
           format.html { redirect_to @employee,
                                     notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}. You have just been assigned as a manager."
           }
         else
           # If employee is not logged in, notice should say you just signed up
-          # session[:id] = @employee.id
-          formatj.html { redirect_to @employee,
+          session[:id] = @employee.id
+          format.html { redirect_to @employee,
                                     notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}"
           }
         end
