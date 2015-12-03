@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => 'sessions#oauth'
   delete 'logout' => 'sessions#destroy'
 
+  get 'calendar' => 'calendars#index'
+
 end
