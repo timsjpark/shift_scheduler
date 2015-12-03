@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_employee
-    @employee ||= Employee.find(session[:id]) if session[:id]
+    @logged_in_employee ||= Employee.find(session[:id]) if session[:id]
   end
 end
