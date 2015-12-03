@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202075127) do
+ActiveRecord::Schema.define(version: 20151203215519) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151202075127) do
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
+    t.boolean  "omniauth"
   end
 
   create_table "schedules", force: :cascade do |t|
