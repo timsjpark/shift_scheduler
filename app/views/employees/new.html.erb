@@ -3,7 +3,7 @@
     <% unless @employee.omniauth? %>
         <div class="col-xs-6 center-block">
           <%= image_tag('google.png', class: 'img-responsive') %>
-          <%= link_to button_tag('Sign up via Google', class: 'btn-auth btn-google'), '/auth/google' %>
+          <%= link_to button_tag('Sign up via Google', class: 'btn-auth btn-google'), '/auth/google_oauth2' %>
         </div>
         <div class="col-xs-4 col-xs-offset-2">
           <h1>Signup</h1>
