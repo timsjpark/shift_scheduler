@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'sessions#login', as: 'login'
   post 'login' => 'sessions#create'
-  get "/auth/:provider/callback" => 'sessions#create'
+  get "/auth/:provider/callback" => 'sessions#oauth'
   delete 'logout' => 'sessions#destroy'
 
 end
