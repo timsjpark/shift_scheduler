@@ -28,6 +28,10 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
+    if Employee.count == 0
+      @employee.type = 'Manager'
+    end
+
     respond_to do |format|
       if @employee.save
         if current_employee
@@ -35,15 +39,21 @@ class EmployeesController < ApplicationController
           format.html { redirect_to @employee,
                                     notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
           }
-          format.json { render :show, status: :created, location: @employee }
+        elsif @employee.type == 'Manager'
+          # If employee is not logged in, notice should say you just signed up
+          session[:id] = @employee.id
+          format.html { redirect_to @employee,
+                                    notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}. You have just been assigned as a manager."
+          }
         else
           # If employee is not logged in, notice should say you just signed up
           session[:id] = @employee.id
           format.html { redirect_to @employee,
                                     notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}"
           }
-          format.json { render :show, status: :created, location: @employee }
         end
+        format.json { render :show, status: :created, location: @employee }
+        @employee.schedule = Schedule.new
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
@@ -87,7 +97,7 @@ class EmployeesController < ApplicationController
   def employee_params
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
-                                       :employee_number, :password, :password_confirmation)
+                                       :employee_number, :password, :password_confirmation, :type)
     end
   end
 end

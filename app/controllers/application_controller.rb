@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_employee
 
+  # Set the time zone so the default time for scheduling shifts is set to the
+  # current hour and minute of the local time zone
+  before_filter :set_timezone
+  def set_timezone
+    Time.zone = 'Mountain Time (US & Canada)'
+  end
+
   # change the default cancancan method to account for employee vs. user model
   def current_ability
     @current_ability ||= Ability.new(current_employee)
@@ -18,6 +25,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_employee
-    @employee ||= Employee.find(session[:id]) if session[:id]
+    @logged_in_employee ||= Employee.find(session[:id]) if session[:id]
   end
 end

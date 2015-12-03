@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :shifts
   resources :employees, :managers
+  resources :schedules, only: [:show]
 
   root 'welcome#index'
 

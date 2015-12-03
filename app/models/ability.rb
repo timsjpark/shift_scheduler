@@ -9,6 +9,7 @@ class Ability
       can :manage, :all
     else
       can [:create, :show], Employee
+      can :show, Schedule
     end
   end
     # Define abilities for the passed in user here. For example:

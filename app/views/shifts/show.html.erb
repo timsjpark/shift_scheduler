@@ -1,0 +1,26 @@
+<div class="page-header">
+  <%= link_to shifts_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_shift_path(@shift), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show shift</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Shift description:</dt>
+  <dd><%= @shift.shift_description %></dd>
+
+  <dt>Start time:</dt>
+  <dd><%= @shift.start_time.strftime('%a, %b %d - %I:%M %p') %></dd>
+
+  <dt>End time:</dt>
+  <dd><%= @shift.end_time.strftime('%a, %b %d - %I:%M %p') %></dd>
+
+  <dt>Assigned to:</dt>
+  <dd><%= "#{@shift.schedule.employee.first_name} #{@shift.schedule.employee.last_name}" %></dd>
+
+</dl>
