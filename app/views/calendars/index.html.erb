@@ -22,11 +22,9 @@
     </div>
   </div>
 
-<script type="text/javascript">
 
-</script>
+  <h3></h3>
 
-  <h3><%= Time.now %></h3>
 </div>
 <div id="calendar"></div>
 
@@ -41,7 +39,7 @@
       view: 'month',
       tmpl_path: 'tmpls/',
       tmpl_cache: false,
-      day: '2013-03-12',
+      day: '2015-12-12', /*THIS NEEDS TO BE CHANGED SO IT SHOWS CURRENT DATE*/
       onAfterEventsLoad: function(events) {
         if(!events) {
           return;
@@ -104,7 +102,7 @@
       //e.stopPropagation();
     });
   }(jQuery));
-  
+
   var calendar = $("#calendar").calendar(
       {
         tmpl_path: "/tmpls/",
