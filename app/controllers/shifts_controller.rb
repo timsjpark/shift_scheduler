@@ -7,6 +7,11 @@ class ShiftsController < ApplicationController
   # GET /shifts.json
   def index
     @shifts = Shift.all
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @shifts }
+    end
   end
 
   # GET /shifts/1
