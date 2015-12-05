@@ -22,6 +22,21 @@
     </div>
   </div>
 
+  <div class="modal fade" id="events-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Event</h3>
+        </div>
+        <div class="modal-body" style="height: 400px">
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <h3></h3>
 
@@ -30,17 +45,20 @@
 
 <script type="text/javascript" src="/assets/calendar.js"></script>
 <script type="text/javascript">
-  <!--Code for callendar buttons-->
+
+
+
   (function($) {
 
     "use strict";
 
     var options = {
-      events_source: 'events.json.php',
+      events_source: '/shifts.json',
       view: 'month',
-      tmpl_path: 'tmpls/',
+      tmpl_path: '/tmpls/',
       tmpl_cache: false,
-      day: '2015-12-12', /*THIS NEEDS TO BE CHANGED SO IT SHOWS CURRENT DATE*/
+      day: '<%= Time.zone.now.strftime("%Y-%m-%d") %>',
+      modal: "#events-modal",
       onAfterEventsLoad: function(events) {
         if (!events) {
           return;
@@ -67,6 +85,7 @@
     };
 
     var calendar = $('#calendar').calendar(options);
+
 
     $('.btn-group button[data-calendar-nav]').each(function() {
       var $this = $(this);
@@ -104,53 +123,6 @@
     });
   }(jQuery));
 
-
-  var calendar = $('#calendar').calendar(
-      {
-
-        events_source: [
-          {
-            id: 1,
-
-            class: "event-important",
-            start: 1449273832608,
-            // Milliseconds
-            "end": 1449273945800,
-            // Milliseconds
-            title: "Day shift",
-            url: "http://127.0.0.1:3000/shifts/1.json"
-          }]
-
-
-      });
-
-  //  var calendar = $("#calendar").calendar(
-  //      {
-  //        tmpl_path: "/tmpls/",
-  //        events_source: function () { return []; }
-  //      });
-
-  //  var calendar = $('#calendar').calendar({
-  //    events_source: function(start, end) {
-  //      var events = [];
-  //      $.ajax({
-  //        url:      'events.json.php?from='+start.getTime()+'&to='+end.getTime(),
-  //        dataType: 'json',
-  //        type:     'GET',
-  //        async:    false
-  //      }).done(function(json) {
-  //        if(!json.success) {
-  //          $.error(json.error);
-  //        }
-  //        if(json.result) {
-  //          events = json.result;
-  //        }
-  //
-  //      });
-  //
-  //      return events;
-  //    },
-  //  });
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 class ShiftSerializer < ActiveModel::Serializer
-  attributes :title, :id, :start, :end, :url
+  attributes :id, :title, :start, :end, :url
 
   def title
     object.shift_description
@@ -14,6 +14,6 @@ class ShiftSerializer < ActiveModel::Serializer
   end
 
   def url
-    "http://127.0.0.1:3000/shifts/#{object.id}.json"
+    shift_path(object)
   end
 end
