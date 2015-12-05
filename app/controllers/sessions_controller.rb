@@ -18,6 +18,12 @@ class SessionsController < ApplicationController
     @employee = Employee.where(
                             email: omniauth_options[:email]
     ).first_or_initialize(omniauth_options)
+
+    # Makes the first employee to sign up the default manager
+    if Employee.count == 0
+      @employee.type == 'Manager'
+    end
+
     if @employee.persisted?
       session[:id] = @employee.id
       redirect_to root_path,
