@@ -30,6 +30,7 @@
 
 <script type="text/javascript" src="/assets/calendar.js"></script>
 <script type="text/javascript">
+  <!--Code for callendar buttons-->
   (function($) {
 
     "use strict";
@@ -41,7 +42,7 @@
       tmpl_cache: false,
       day: '2015-12-12', /*THIS NEEDS TO BE CHANGED SO IT SHOWS CURRENT DATE*/
       onAfterEventsLoad: function(events) {
-        if(!events) {
+        if (!events) {
           return;
         }
         var list = $('#eventlist');
@@ -81,33 +82,75 @@
       });
     });
 
-    $('#first_day').change(function(){
+    $('#first_day').change(function() {
       var value = $(this).val();
       value = value.length ? parseInt(value) : null;
       calendar.setOptions({first_day: value});
       calendar.view();
     });
 
-    $('#language').change(function(){
+    $('#language').change(function() {
       calendar.setLanguage($(this).val());
       calendar.view();
     });
 
-    $('#events-in-modal').change(function(){
+    $('#events-in-modal').change(function() {
       var val = $(this).is(':checked') ? $(this).val() : null;
       calendar.setOptions({modal: val});
     });
-    $('#events-modal .modal-header, #events-modal .modal-footer').click(function(e){
+    $('#events-modal .modal-header, #events-modal .modal-footer').click(function(e) {
       //e.preventDefault();
       //e.stopPropagation();
     });
   }(jQuery));
 
-  var calendar = $("#calendar").calendar(
+
+  var calendar = $('#calendar').calendar(
       {
-        tmpl_path: "/tmpls/",
-        events_source: function () { return []; }
+
+        events_source: [
+          {
+            id: 1,
+
+            class: "event-important",
+            start: 1449273832608,
+            // Milliseconds
+            "end": 1449273945800,
+            // Milliseconds
+            title: "Day shift",
+            url: "http://127.0.0.1:3000/shifts/1.json"
+          }]
+
+
       });
+
+  //  var calendar = $("#calendar").calendar(
+  //      {
+  //        tmpl_path: "/tmpls/",
+  //        events_source: function () { return []; }
+  //      });
+
+  //  var calendar = $('#calendar').calendar({
+  //    events_source: function(start, end) {
+  //      var events = [];
+  //      $.ajax({
+  //        url:      'events.json.php?from='+start.getTime()+'&to='+end.getTime(),
+  //        dataType: 'json',
+  //        type:     'GET',
+  //        async:    false
+  //      }).done(function(json) {
+  //        if(!json.success) {
+  //          $.error(json.error);
+  //        }
+  //        if(json.result) {
+  //          events = json.result;
+  //        }
+  //
+  //      });
+  //
+  //      return events;
+  //    },
+  //  });
 </script>
 </body>
 </html>
