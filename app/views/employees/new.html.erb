@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <div class="row">
-    <% unless @employee.omniauth? %>
+    <% unless @employee.omniauth? || current_employee %>
         <div class="col-xs-6 center-block">
           <%= image_tag('google.png', class: 'img-responsive') %>
           <%= link_to button_tag('Sign up via Google', class: 'btn-auth btn-google'), '/auth/google_oauth2' %>
@@ -9,7 +9,7 @@
           <h1>Signup</h1>
         </div>
     <% else %>
-        <div class="col-xs-10 col-xs-offset-2 center-block">
+        <div>
           <h1>Verify Details</h1>
         </div>
     <% end %>
