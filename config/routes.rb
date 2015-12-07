@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :schedules, only: [:show]
 
   root 'welcome#index'
+  get 'about' => 'welcome#about'
+  get 'contact' => 'welcome#contact'
 
   get 'signup' => 'employees#new_signup', as: 'new_signup'
   post '/employees' => 'employees#signup', as: 'signup'
@@ -14,5 +16,4 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   get '/calendars' => 'calendars#index'
-
 end

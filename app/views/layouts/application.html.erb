@@ -31,41 +31,40 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Contact', contact_path %></li>
         <% if current_employee.present? %>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Schedule
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Calendar', calendars_path %></li>
-              <li><%= link_to 'My Schedule', schedule_path(current_employee) %></li>
-            </ul>
-          </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Schedule
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Calendar', calendars_path %></li>
+                <li><%= link_to 'My Schedule', schedule_path(current_employee) %></li>
+              </ul>
+            </li>
         <% end %>
         <% if can? :manage, :all %>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Shifts
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "View Shifts", shifts_path %></li>
-              <li><%= link_to "Add Shift", new_shift_path %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Employees
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "View Employees", employees_path %></li>
-              <li><%= link_to "Add Employee", new_employee_path %></li>
-            </ul>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Shifts
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "View Shifts", shifts_path %></li>
+                <li><%= link_to "Add Shift", new_shift_path %></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Employees
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "View Employees", employees_path %></li>
+                <li><%= link_to "Add Employee", new_employee_path %></li>
+              </ul>
         <% end %>
       </ul>
     </div>
