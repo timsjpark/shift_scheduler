@@ -7,6 +7,11 @@ class ShiftsController < ApplicationController
   # GET /shifts.json
   def index
     @shifts = Shift.all
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: {'success': 1, 'result': serialized_shifts} }
+    end
   end
 
   # GET /shifts/1
@@ -72,5 +77,9 @@ class ShiftsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_params
       params.require(:shift).permit(:shift_description, :start_time, :end_time, :schedule_id)
+    end
+
+    def serialized_shifts
+      ActiveModel::ArraySerializer.new(@shifts).as_json
     end
 end

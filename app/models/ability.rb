@@ -10,6 +10,7 @@ class Ability
     else
       can [:create, :show], Employee
       can :show, Schedule
+      can :read, Shift
     end
   end
     # Define abilities for the passed in user here. For example:

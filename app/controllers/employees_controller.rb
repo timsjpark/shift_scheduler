@@ -97,7 +97,8 @@ class EmployeesController < ApplicationController
   def employee_params
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
-                                       :employee_number, :password, :password_confirmation, :type)
+                                       :employee_number, :password, :password_confirmation,
+                                       :type, :omniauth)
     end
   end
 end
