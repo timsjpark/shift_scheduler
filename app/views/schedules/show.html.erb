@@ -5,31 +5,3 @@
 <div>
   <%= render 'schedules/calendar' %>
 </div>
-
-<!--<div class="table-responsive">-->
-  <!--<table class="table table-striped table-bordered table-hover">-->
-    <!--<thead>-->
-    <!--<tr>-->
-      <!--<th>Shift description</th>-->
-      <!--<th>Start time</th>-->
-      <!--<th>End time</th>-->
-      <!--<th>Assigned to</th>-->
-      <!--<th></th>-->
-      <!--<th></th>-->
-      <!--<th></th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-
-    <!--<tbody>-->
-    <!--<%= content_tag_for(:tr, @shifts) do |shift| %>-->
-        <!--<td><%= shift.shift_description %></td>-->
-        <!--<td><%= shift.start_time.strftime('%a, %b %d - %I:%M %p') %></td>-->
-        <!--<td><%= shift.end_time.strftime('%a, %b %d - %I:%M %p') %></td>-->
-        <!--<td><%= "#{shift.schedule.employee.first_name} #{shift.schedule.employee.last_name}" %></td>-->
-        <!--<td><%= link_to 'Show', shift %></td>-->
-        <!--<td><%= link_to 'Edit', edit_shift_path(shift) %></td>-->
-        <!--<td><%= link_to 'Destroy', shift, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-    <!--<% end %>-->
-    <!--</tbody>-->
-  <!--</table>-->
-<!--</div>-->
