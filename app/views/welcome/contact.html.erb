@@ -1,0 +1,107 @@
+<!--Google maps styling to be called at the bottom of the contact page-->
+<style>
+    #map {
+        width: 500px;
+        height: 400px;
+    }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+    function initialize() {
+        var myLatLong = {lat: 39.8630, lng: -105.0538};
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: myLatLong,
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+        var markerOptions = {
+            position: myLatLong,
+            map: map,
+            title: 'DaVinci Institute',
+        };
+        var marker = new google.maps.Marker(markerOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<!--Contact page content-->
+
+<div class="container">
+  <div class="row console-row">
+    <div class="col-md-6 console-panel">
+      <h1 style="text-align: center">General Inquiries</h1>
+      <hr>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Department</th>
+          <th>Manager</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Sales</td>
+          <td>Bob Barker</td>
+          <td>303-173-6729</td>
+          <td>bob@shiftscheduler.com</td>
+        </tr>
+        <tr>
+          <td>Outreach</td>
+          <td>Indiana Jones</td>
+          <td>303-557-3892</td>
+          <td>indy@shiftscheduler.com</td>
+        </tr>
+        <tr>
+          <td>International Customers</td>
+          <td>Austin Powers</td>
+          <td>303-530-6441</td>
+          <td>austin@shiftscheduler.com</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6 console-panel">
+      <h1 style="text-align: center">Customer Support</h1>
+      <hr>
+      <div style="text-align: center">
+      <h4>Business Address</h4>
+      <p>
+        Shift Scheduler</br>
+        9191 Sheridan Blvd #300</br>
+        Westminster, CO 80031
+      </p>
+      <h4>24-hour support</h4>
+      1-800-HELP-NOW
+      </div>
+    </div>
+  </div>
+  <div class="row console-row">
+    <div class="col-md-6 console-panel">
+      <h1 style="text-align: center">Our Customer Service Guarantee</h1>
+      <hr>
+      <p>
+        Lorem ipsum dolor sit amet, mea odio probo graeco te, vim adhuc partem invidunt ne, cu ius oratio consetetur vituperata. Cu utamur adipisci qualisque nec, erat apeirian eos ex, elitr animal blandit an eam. Quo erat scripserit disputando id, cu facer ridens luptatum quo. Vero volumus an cum, sed ei everti fuisset torquatos.
+      </p>
+      <p>
+        In facete saperet sed, assum tincidunt id sit. Eu vel audire prompta periculis. In eros timeam usu. Perfecto legendos ne est. Pro ne periculis abhorreant, postulant definiebas vix an, per ex sint ornatus molestie. Ludus soleat ad vis, eos option adversarium id.
+      </p>
+      <p>
+        Eruditi tacimates mel at, argumentum dissentiunt ne eam. Eam at consul percipit scriptorem, mucius imperdiet duo ei. Et illud viris tollit ius. Ei ferri illud mazim usu.
+      </p>
+      <p>
+        Qui adhuc hendrerit mediocritatem ne. Vix philosophia interpretaris at, epicuri detraxit consectetuer vel id. Ex eos ullum mazim tollit, an eam quando alienum, ex sadipscing reformidans vel. No dicit epicurei oportere qui, veri legimus detraxit usu ea. Ex vim postea eruditi, sea case error quaerendum et. Dico appellantur vel eu, pri in quis altera expetenda, oblique probatus ut eam. Primis intellegam mel ex, cum wisi voluptaria reprehendunt te.
+      </p>
+    </div>
+    <div class="col-md-6 console-panel">
+      <h1 style="text-align: center">Location</h1>
+      <hr>
+      <div id="map">
+      </div>
+    </div>
+  </div>
+</div>
