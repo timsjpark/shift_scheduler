@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203215519) do
+ActiveRecord::Schema.define(version: 20151208082229) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "departments", ["organization_id"], name: "index_departments_on_organization_id"
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -25,11 +34,20 @@ ActiveRecord::Schema.define(version: 20151203215519) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-12-07'
+    t.date     "hire_date",       default: '2015-12-08'
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
     t.boolean  "omniauth"
+    t.integer  "department_id"
+  end
+
+  add_index "employees", ["department_id"], name: "index_employees_on_department_id"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade do |t|
