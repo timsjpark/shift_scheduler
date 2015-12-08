@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203063400) do
+ActiveRecord::Schema.define(version: 20151203215519) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151203063400) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-12-04'
+    t.date     "hire_date",       default: '2015-12-07'
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
