@@ -7,7 +7,7 @@ class Ability
 
     if employee.manager?
       can :manage, :all
-    elseif employee.persisted?
+    elsif employee.persisted?
       can [:create, :show], Employee
       can :show, Schedule
       can :read, Shift
