@@ -1,8 +1,8 @@
 class ShiftSerializer < ActiveModel::Serializer
-  attributes :id, :title, :start, :end, :url
+  attributes :id, :title, :start, :end, :url,
 
   def title
-    object.shift_description
+    "#{object.employee.first_name} (#{object.shift_description})"
   end
 
   def start
