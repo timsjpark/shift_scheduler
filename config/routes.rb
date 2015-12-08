@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :shifts
   resources :employees, :managers
   resources :schedules, only: [:show]
+  resources :organizations
 
   root 'welcome#index'
   get 'about' => 'welcome#about'
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   get '/calendar' => 'calendars#index'
+
+  get '/join/:id' => 'organizations#join', as: 'join_organization'
 end

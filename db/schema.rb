@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208082229) do
+ActiveRecord::Schema.define(version: 20151208193528) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -40,9 +40,11 @@ ActiveRecord::Schema.define(version: 20151208082229) do
     t.string   "type",            default: "Employee"
     t.boolean  "omniauth"
     t.integer  "department_id"
+    t.integer  "organization_id"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"
+  add_index "employees", ["organization_id"], name: "index_employees_on_organization_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
