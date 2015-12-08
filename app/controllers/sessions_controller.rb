@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def oauth
     @employee = Employee.where(
-                            email: omniauth_options[:email]
+        email: omniauth_options[:email]
     ).first_or_initialize(omniauth_options)
 
     if @employee.persisted?
@@ -48,5 +48,15 @@ class SessionsController < ApplicationController
           omniauth: true
       }
     end
+  end
+
+  def token_options
+    auth_hash = request.env['omniauth.auth']['credentials']
+      {
+          access_token: auth_hash['token'],
+          refresh_token: auth_hash['refresh_token'],
+          expires_at: Time.at(auth_hash['expires_at']).to_datetime,
+          email: @employee.email
+      }
   end
 end
