@@ -18,7 +18,7 @@
     <tbody>
     <%= content_tag_for(:tr, @departments) do |department| %>
       <td><%= department.name %></td>
-      <td><%= link_to 'Switch to department', view_department_path(department) %></td>
+      <td><%= link_to 'Switch to department', switch_department_path(department) %></td>
     <% end %>
     </tbody>
   </table>

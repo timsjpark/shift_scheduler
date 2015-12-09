@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208193528) do
+ActiveRecord::Schema.define(version: 20151209074007) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20151208193528) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-12-08'
+    t.date     "hire_date",       default: '2015-12-09'
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
@@ -54,10 +54,12 @@ ActiveRecord::Schema.define(version: 20151208193528) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "department_id"
   end
 
+  add_index "schedules", ["department_id"], name: "index_schedules_on_department_id"
   add_index "schedules", ["employee_id"], name: "index_schedules_on_employee_id"
 
   create_table "shifts", force: :cascade do |t|
