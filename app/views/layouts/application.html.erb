@@ -74,7 +74,7 @@
             <ul class="dropdown-menu">
               <% current_employee.organization.departments.each do |department| %>
                 <li><%= link_to department.name, switch_department_path(department) %></li>
-              <% end  %>
+              <% end %>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Add Department", new_department_path %></li>
             </ul>
@@ -95,9 +95,11 @@
     <% end %>
   <% end %>
 
-<div class="well">
-  Current Department: <%= current_employee.department.name %>
-</div>
+  <% if current_employee %>
+    <div class="well">
+      Current Department: <%= current_employee.department.name %>
+    </div>
+  <% end %>
 
   <%= yield %>
 </div>
