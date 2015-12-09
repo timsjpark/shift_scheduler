@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
-    @departments = Department.where(organization_id: current_employee.organization_id)
+    @departments = Department.where(organization_id: current_employee.organization_id) if current_employee
   end
 
   # GET /employees/1/edit

@@ -6,7 +6,8 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.json
   def index
-    @shifts = Shift.all
+    department = current_employee.department
+    @shifts = department.shifts
 
     respond_to do |format|
       format.html { render :index }
