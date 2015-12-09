@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get '/calendar' => 'calendars#index'
 
   get '/join/:id' => 'organizations#join', as: 'join_organization'
-  get '/view/:id' => 'departments#view', as: 'view_department'
+  get '/switch/:id' => 'departments#switch', as: 'switch_department'
 end

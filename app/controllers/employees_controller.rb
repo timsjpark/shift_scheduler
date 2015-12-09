@@ -17,6 +17,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @departments = Department.where(organization_id: current_employee.organization_id)
   end
 
   # GET /employees/1/edit
@@ -49,6 +50,9 @@ class EmployeesController < ApplicationController
         end
         format.json { render :show, status: :created, location: @employee }
         @employee.schedule = Schedule.new
+        schedule = @employee.schedule
+        schedule.department_id = @employee.department_id
+        schedule.save
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
@@ -93,7 +97,7 @@ class EmployeesController < ApplicationController
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
                                        :employee_number, :password, :password_confirmation,
-                                       :type, :omniauth, :department_id, :organization_id)
+                                       :type, :omniauth, :department_id)
     end
   end
 end

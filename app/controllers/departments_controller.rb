@@ -29,9 +29,12 @@ class DepartmentsController < ApplicationController
     @departments = Department.where(organization_id: current_employee.organization_id)
   end
 
-  def view
+  def switch
     current_employee.department_id = @department.id
     current_employee.save
+    schedule = current_employee.schedule
+    schedule.department_id = @department.id
+    schedule.save
     redirect_to employees_path
   end
 

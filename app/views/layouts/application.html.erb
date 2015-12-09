@@ -65,6 +65,17 @@
               <li><%= link_to "View Employees", employees_path %></li>
               <li><%= link_to "Add Employee", new_employee_path %></li>
             </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Departments
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "View Departments", departments_path %></li>
+              <li><%= link_to "Add Department", new_department_path %></li>
+            </ul>
+          </li>
         <% end %>
       </ul>
       <%= render 'layouts/authentication' %>
