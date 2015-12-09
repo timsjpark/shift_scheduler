@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.where(department_id: current_employee.department_id)
   end
 
   # GET /employees/1
@@ -28,11 +28,15 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
+    if current_employee
+      @employee.organization_id = current_employee.organization_id
+      @employee.department_id = current_employee.department_id
+    end
+
     respond_to do |format|
       if @employee.save
         if current_employee
           # If employee is logged in, notice should say you added employees to table
-          @employee.department_id = current_employee.department_id
           format.html { redirect_to @employee,
                                     notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
           }

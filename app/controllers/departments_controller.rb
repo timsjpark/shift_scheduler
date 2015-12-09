@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
 
   load_and_authorize_resource
 
-  # before_action :set_department, only: [:show]
+  before_action :set_department, only: [:show, :edit, :update, :destroy, :view]
   def new
     @department = Department.new
   end
@@ -29,17 +29,17 @@ class DepartmentsController < ApplicationController
     @departments = Department.where(organization_id: current_employee.organization_id)
   end
 
-  def join
-    @department = Department.find_by(params[:id])
+  def view
     current_employee.department_id = @department.id
-    redirect_to schedule_path
+    current_employee.save
+    redirect_to employees_path
   end
 
   private
 
-  # def set_department
-  #   @department = Department.find(params[:id])
-  # end
+  def set_department
+    @department = Department.find(params[:id])
+  end
 
   def department_params
     params.require(:department).permit(:name)
