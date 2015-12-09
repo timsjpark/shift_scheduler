@@ -7,6 +7,10 @@ class Employee < ActiveRecord::Base
   has_secure_password(validations: false)
   validates_presence_of :first_name, :last_name, :email
   validates :email, format: { with: /@/ }
+  validates_uniqueness_of :email
+
+  validates :password, length: {minimum: 8, message: "must contain at least 8 characters"},
+    format: {with: /[!@#$%^&*]+\d+/, message: 'must contain at least one number and one character (!@#$%^&*)'}
 
   validates_confirmation_of :password, if: ->(employee) {
     !employee.omniauth? && employee.password.present?
