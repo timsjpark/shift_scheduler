@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_department, only: [:show, :edit, :update, :destroy, :view]
+  before_action :set_department, only: [:show, :edit, :update, :destroy, :switch]
   def new
     @department = Department.new
   end
@@ -37,6 +37,33 @@ class DepartmentsController < ApplicationController
     schedule.save
     redirect_to employees_path
   end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @department.update(department_params)
+        format.html { redirect_to departments_path,
+          notice: "#{@department.name} was updated"
+        }
+        format.json { render :show, status: :ok, location: @department }
+      else
+        format.html { render :edit }
+        format.json { render json: @department.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # def destroy
+  #   @department.update_attribute(:removal_date, Date.today)
+  #   respond_to do |format|
+  #     format.html { redirect_to employees_url,
+  #       notice: "#{@department.name} was removed."
+  #     }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 

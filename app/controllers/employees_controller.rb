@@ -31,7 +31,6 @@ class EmployeesController < ApplicationController
 
     if current_employee
       @employee.organization_id = current_employee.organization_id
-      @employee.department_id = current_employee.department_id
     end
 
     respond_to do |format|
