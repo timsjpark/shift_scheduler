@@ -33,4 +33,10 @@
       <dd><%= @employee.removal_date.strftime('%m/%d/%Y') %></dd>
   <% end %>
 
+  <dt>Role:</dt>
+  <dd><%= @employee.type %></dd>
+
+  <dt>Department:</dt>
+  <dd><%= @employee.department.name %></dd>
+
 </dl>

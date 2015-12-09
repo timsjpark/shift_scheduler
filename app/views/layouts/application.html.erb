@@ -95,7 +95,7 @@
     <% end %>
   <% end %>
 
-  <% if current_employee %>
+  <% if current_employee && current_employee.department.present? %>
     <div class="well">
       Current Department: <%= current_employee.department.name %>
     </div>
