@@ -12,8 +12,10 @@ class Ability
       can :show, Schedule
       can :read, Shift
       can :index, Calendar
+      can [:create, :show, :index], Organization
     else
       can [:create, :show], Employee
+      can [:create, :show, :index], Organization
     end
   end
     # Define abilities for the passed in user here. For example:

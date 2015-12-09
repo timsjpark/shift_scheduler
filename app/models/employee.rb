@@ -2,6 +2,7 @@ class Employee < ActiveRecord::Base
   has_one :schedule
   has_many :shifts, through: :schedule
   belongs_to :department
+  belongs_to :organization
 
   has_secure_password(validations: false)
   validates_presence_of :first_name, :last_name, :email

@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
+  load_and_authorize_resource
 
+  before_action :set_organization, only: [:show]
   def new
     @organization = Organization.new
   end
@@ -10,7 +12,9 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.save
         current_employee.type = 'Manager'
-        format.html { redirect_to employees_path, notice: 'Organization was successfully created.' }
+        current_employee.organization_id = @organization.id
+        current_employee.save
+        format.html { redirect_to departments_path, notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }
@@ -26,6 +30,8 @@ class OrganizationsController < ApplicationController
   def join
     @organization = Organization.find_by(params[:id])
     current_employee.organization_id = @organization.id
+    current_employee.type = 'Employee'
+    current_employee.save
     redirect_to schedule_path
   end
 
