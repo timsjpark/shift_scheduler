@@ -12,13 +12,15 @@
     <tr>
       <th>Name</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
 
     <tbody>
     <%= content_tag_for(:tr, @departments) do |department| %>
       <td><%= department.name %></td>
-      <td><%= link_to 'Join', join_department_path(department) %></td>
+      <td><%= link_to 'Switch to department', join_department_path(department) %></td>
+      <td><%= link_to 'View employees', employees_path(department) %></td>
     <% end %>
     </tbody>
   </table>

@@ -2,17 +2,17 @@ class DepartmentsController < ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_department, only: [:show]
+  # before_action :set_department, only: [:show]
   def new
     @department = Department.new
   end
 
   def create
     @department = Department.new(department_params)
+    @department.organization_id = current_employee.organization_id
 
     respond_to do |format|
       if @department.save
-        @department.organization_id = employee.organization_id
         current_employee.department_id = @department.id
         current_employee.save
 
@@ -26,7 +26,7 @@ class DepartmentsController < ApplicationController
   end
 
   def index
-    @departments = Department.all
+    @departments = Department.where(organization_id: current_employee.organization_id)
   end
 
   def join
@@ -37,9 +37,9 @@ class DepartmentsController < ApplicationController
 
   private
 
-  def set_department
-    @department = Department.find(params[:id])
-  end
+  # def set_department
+  #   @department = Department.find(params[:id])
+  # end
 
   def department_params
     params.require(:department).permit(:name)
