@@ -28,14 +28,11 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
-    if Employee.count == 0
-      @employee.type = 'Manager'
-    end
-
     respond_to do |format|
       if @employee.save
         if current_employee
           # If employee is logged in, notice should say you added employees to table
+          @employee.department_id = current_employee.department_id
           format.html { redirect_to @employee,
                                     notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
           }
@@ -92,7 +89,7 @@ class EmployeesController < ApplicationController
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
                                        :employee_number, :password, :password_confirmation,
-                                       :type, :omniauth)
+                                       :type, :omniauth, :department_id, :organization_id)
     end
   end
 end

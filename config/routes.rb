@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :employees, :managers
   resources :schedules, only: [:show]
   resources :organizations
+  resources :departments
 
   root 'welcome#index'
   get 'about' => 'welcome#about'
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   get '/calendar' => 'calendars#index'
 
   get '/join/:id' => 'organizations#join', as: 'join_organization'
+  get 'department/join/:id' => 'department#join', as: 'join_department'
 end
