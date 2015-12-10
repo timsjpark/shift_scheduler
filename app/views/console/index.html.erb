@@ -18,7 +18,7 @@
 
 
   <!--Department Table-->
-  <div class="col-md-4 console-panel" style="">
+  <div class="col-md-5 console-panel" style="">
     <div class="page-header">
       <h1><%= link_to 'Departments', departments_path %></h1>
     </div>
@@ -54,7 +54,7 @@
   <div class="col-md-6 console-panel">
 
     <div class="page-header">
-      <h1><%= link_to 'Employees', new_employee_path %></h1>
+      <h1><%= link_to 'Employees', employees_path %></h1>
     </div>
 
     <div class="table-responsive">
@@ -74,7 +74,7 @@
           <td><%= link_to '', employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-eye-open' %></td>
           <td><%= link_to '', schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-calendar' %></td>
           <td><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-cog' %></td>
-          <td><%= link_to '', employee, class: 'btn btn-primary glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
         <% end %>
         </tbody>
       </table>
@@ -82,4 +82,14 @@
   </div>
 </div>
 <div class="container">
+  <%= render 'console/calendar' %>
+</div>
+
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
