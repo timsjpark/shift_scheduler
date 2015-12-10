@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   get '/switch/:id' => 'departments#switch', as: 'switch_department'
 
   get 'verification/:token' => 'employees#verify', as: 'verify_email'
+
+  get 'email/schedule/:id' => 'schedules#email_schedule', as: 'email_schedule'
 end
