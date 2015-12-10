@@ -28,6 +28,7 @@ class ShiftsController < ApplicationController
 
   # GET /shifts/1/edit
   def edit
+    @schedules = Schedule.where(department_id: current_employee.department_id)
   end
 
   # POST /shifts
