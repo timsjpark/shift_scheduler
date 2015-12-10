@@ -14,4 +14,9 @@ class EmployeeNotifier < ApplicationMailer
     @employee = employee
     mail to: @employee.email
   end
+
+  def send_schedule(employee)
+    @employee = employee
+    mail to: @employee.email
+  end
 end

@@ -1,0 +1,8 @@
+Schedule for <%= @employee.first_name.titleize %>
+
+<% @employee.shifts.each do |shift| %>
+    <%= shift.shift_description %>
+    <%= shift.start_time.strftime('%a, %b %d - %I:%M %p') %>
+    <%= shift.end_time.strftime('%a, %b %d - %I:%M %p') %>
+
+<% end %>
