@@ -1,5 +1,5 @@
 class EmployeeNotifier < ApplicationMailer
-
+  include SendGrid
   def signed_up(employee)
     @employee = employee
     mail to: @employee.email

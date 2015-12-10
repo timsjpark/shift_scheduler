@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   # Set the time zone so the default time for scheduling shifts is set to the
   # current hour and minute of the local time zone
   before_filter :set_timezone
+
   def set_timezone
     Time.zone = 'Mountain Time (US & Canada)'
   end
@@ -26,5 +27,8 @@ class ApplicationController < ActionController::Base
 
   def current_employee
     @logged_in_employee ||= Employee.find(session[:id]) if session[:id]
+  rescue ActiveRecord::RecordNotFound
+    session.delete(:id)
+    nil
   end
 end
