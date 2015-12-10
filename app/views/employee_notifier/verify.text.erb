@@ -1,15 +1,15 @@
-Hello <%= @user.first_name.titleize %>,
+Hello <%= @employee.first_name.titleize %>,
 
 You recently updated your <%= t('site_name') %> account's
-email address to <%= @user.email %>.
+email address to <%= @employee.email %>.
 
 To verify your email address, please open the following link:
 
-<%= verify_email_url(@user.token) %>
+<%= verify_email_url(@employee.token) %>
 
 If the link does not work, please login to your account
 and enter this token:
 
-<%= @user.token %>
+<%= @employee.token %>
 
 Thank you for visiting <%= t('site_name') %>.
