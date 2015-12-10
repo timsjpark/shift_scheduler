@@ -53,6 +53,7 @@ class EmployeesController < ApplicationController
         schedule = @employee.schedule
         schedule.department_id = @employee.department_id
         schedule.save
+        @employee.needs_verification!
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }

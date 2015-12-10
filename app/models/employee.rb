@@ -26,4 +26,12 @@ class Employee < ActiveRecord::Base
   def manager?
     type == 'Manager'
   end
+
+  def needs_verification!
+    self.update_attributes!(
+        token: SecureRandom.urlsafe_base64,
+        verified_email: false
+    )
+    EmployeeNotifier.signed_up(self).deliver_now
+  end
 end
