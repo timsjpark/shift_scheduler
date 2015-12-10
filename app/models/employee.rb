@@ -9,10 +9,10 @@ class Employee < ActiveRecord::Base
   validates :email, format: { with: /@/ }
   validates_uniqueness_of :email
 
-  validates :password, length: {minimum: 8, message: "must contain at least 8 characters"},
-    format: {with: /[!@#$%^&*]+\d+/, message: 'must contain at least one number and one character (!@#$%^&*)'}, if: ->(employee) {
-      employee.persisted? == false
-    }
+  # validates :password, length: {minimum: 8, message: "must contain at least 8 characters"},
+  #   format: {with: /[!@#$%^&*]+\d+/, message: 'must contain at least one number and one character (!@#$%^&*)'}, if: ->(employee) {
+  #     !employee.omniauth? && employee.persisted? == false
+  #   }
   validates_confirmation_of :password, if: ->(employee) {
     !employee.omniauth? && employee.password.present?
   }
@@ -25,5 +25,13 @@ class Employee < ActiveRecord::Base
 
   def manager?
     type == 'Manager'
+  end
+
+  def needs_verification!
+    self.update_attributes!(
+        token: SecureRandom.urlsafe_base64,
+        verified_email: false
+    )
+    EmployeeNotifier.signed_up(self).deliver_now
   end
 end

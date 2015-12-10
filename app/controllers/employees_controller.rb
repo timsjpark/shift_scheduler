@@ -49,10 +49,9 @@ class EmployeesController < ApplicationController
           }
         end
         format.json { render :show, status: :created, location: @employee }
-        @employee.schedule = Schedule.new
-        schedule = @employee.schedule
-        schedule.department_id = @employee.department_id
-        schedule.save
+        @employee.schedule = Schedule.create(department_id: @employee.department_id)
+        # Possibly move to after_save, if email changes, set needs_verification
+        @employee.needs_verification!
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }

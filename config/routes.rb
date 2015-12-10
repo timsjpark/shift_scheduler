@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: 'localhost', port:3000
   resources :shifts
   resources :employees, :managers
   resources :schedules, only: [:show]
@@ -21,4 +22,8 @@ Rails.application.routes.draw do
 
   get 'organizations/join/:id' => 'organizations#join', as: 'join_organization'
   get '/switch/:id' => 'departments#switch', as: 'switch_department'
+
+  get 'verification/:token' => 'employees#verify', as: 'verify_email'
+
+  get 'email/schedule/:id' => 'schedules#email_schedule', as: 'email_schedule'
 end
