@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :organizations
   resources :departments
 
-  root 'welcome#index'
+  root 'console#index'
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
+  get 'welcome' => 'welcome#index'
 
   get 'signup' => 'employees#new_signup', as: 'new_signup'
   post '/employees' => 'employees#signup', as: 'signup'
