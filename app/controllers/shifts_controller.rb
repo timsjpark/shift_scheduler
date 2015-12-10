@@ -6,7 +6,8 @@ class ShiftsController < ApplicationController
   # GET /shifts
   # GET /shifts.json
   def index
-    @shifts = Shift.all
+    department = current_employee.department
+    @shifts = department.shifts
 
     respond_to do |format|
       format.html { render :index }
@@ -22,6 +23,7 @@ class ShiftsController < ApplicationController
   # GET /shifts/new
   def new
     @shift = Shift.new
+    @schedules = Schedule.where(department_id: current_employee.department_id)
   end
 
   # GET /shifts/1/edit

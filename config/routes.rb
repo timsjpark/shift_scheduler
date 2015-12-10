@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :shifts
   resources :employees, :managers
   resources :schedules, only: [:show]
+  resources :organizations
+  resources :departments
 
   root 'welcome#index'
   get 'about' => 'welcome#about'
@@ -15,5 +17,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => 'sessions#oauth'
   delete 'logout' => 'sessions#destroy'
 
-  get '/calendars' => 'calendars#index'
+  get '/calendar' => 'calendars#index'
+
+  get 'organizations/join/:id' => 'organizations#join', as: 'join_organization'
+  get '/switch/:id' => 'departments#switch', as: 'switch_department'
 end

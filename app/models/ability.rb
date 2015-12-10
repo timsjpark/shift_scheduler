@@ -7,10 +7,15 @@ class Ability
 
     if employee.manager?
       can :manage, :all
-    else
+    elsif employee.persisted?
       can [:create, :show], Employee
       can :show, Schedule
       can :read, Shift
+      can :index, Calendar
+      can [:create, :join, :index], Organization
+      can [:switch, :index], Department
+    else
+      can :create, Employee
     end
   end
     # Define abilities for the passed in user here. For example:

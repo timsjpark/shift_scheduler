@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203063400) do
+ActiveRecord::Schema.define(version: 20151209074007) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "departments", ["organization_id"], name: "index_departments_on_organization_id"
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
@@ -25,19 +34,32 @@ ActiveRecord::Schema.define(version: 20151203063400) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-12-04'
+    t.date     "hire_date",       default: '2015-12-09'
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
     t.boolean  "omniauth"
+    t.integer  "department_id"
+    t.integer  "organization_id"
+  end
+
+  add_index "employees", ["department_id"], name: "index_employees_on_department_id"
+  add_index "employees", ["organization_id"], name: "index_employees_on_organization_id"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade do |t|
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "department_id"
   end
 
+  add_index "schedules", ["department_id"], name: "index_schedules_on_department_id"
   add_index "schedules", ["employee_id"], name: "index_schedules_on_employee_id"
 
   create_table "shifts", force: :cascade do |t|

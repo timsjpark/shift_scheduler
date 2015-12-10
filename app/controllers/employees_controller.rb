@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.where(department_id: current_employee.department_id)
   end
 
   # GET /employees/1
@@ -17,6 +17,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @departments = Department.where(organization_id: current_employee.organization_id) if current_employee
   end
 
   # GET /employees/1/edit
@@ -28,8 +29,8 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
-    if Employee.count == 0
-      @employee.type = 'Manager'
+    if current_employee
+      @employee.organization_id = current_employee.organization_id
     end
 
     respond_to do |format|
@@ -39,21 +40,18 @@ class EmployeesController < ApplicationController
           format.html { redirect_to @employee,
                                     notice: "#{@employee.first_name.capitalize} #{@employee.last_name.capitalize} was added on #{Time.new.strftime('%m/%d/%Y')}"
           }
-        elsif @employee.type == 'Manager'
-          # If employee is not logged in, notice should say you just signed up
-          session[:id] = @employee.id
-          format.html { redirect_to @employee,
-                                    notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}. You have just been assigned as a manager."
-          }
         else
           # If employee is not logged in, notice should say you just signed up
           session[:id] = @employee.id
-          format.html { redirect_to @employee,
+          format.html { redirect_to organizations_path,
                                     notice: "Thank you for signing up #{@employee.first_name.capitalize} #{@employee.last_name.capitalize}"
           }
         end
         format.json { render :show, status: :created, location: @employee }
         @employee.schedule = Schedule.new
+        schedule = @employee.schedule
+        schedule.department_id = @employee.department_id
+        schedule.save
       else
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
@@ -98,7 +96,7 @@ class EmployeesController < ApplicationController
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
                                        :employee_number, :password, :password_confirmation,
-                                       :type, :omniauth)
+                                       :type, :omniauth, :department_id, :organization_id)
     end
   end
 end

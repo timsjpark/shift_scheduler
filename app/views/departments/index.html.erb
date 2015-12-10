@@ -1,0 +1,28 @@
+<div class="page-header">
+  <%= link_to new_department_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Department
+  <% end %>
+  <h1>Listing Departments</h1>
+</div>
+
+<div class="table-responsive">
+  <table id="department_table" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= content_tag_for(:tr, @departments) do |department| %>
+      <td><%= department.name %></td>
+      <% button_text = current_employee.manager? ? 'Switch to' : 'Join' %>
+      <td><%= link_to "#{button_text} Department", switch_department_path(department) %></td>
+      <td><%= link_to 'Edit', edit_department_path(department) %></td>
+    <% end %>
+    </tbody>
+  </table>
+</div>
