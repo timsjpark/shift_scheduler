@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209074007) do
+ActiveRecord::Schema.define(version: 20151210005537) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20151209074007) do
     t.string   "employee_number"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.date     "hire_date",       default: '2015-12-09'
+    t.date     "hire_date",       default: '2015-12-08'
     t.date     "removal_date"
     t.string   "password_digest"
     t.string   "type",            default: "Employee"
     t.boolean  "omniauth"
     t.integer  "department_id"
     t.integer  "organization_id"
+    t.boolean  "verified_email"
+    t.string   "token"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"
@@ -72,5 +74,14 @@ ActiveRecord::Schema.define(version: 20151209074007) do
   end
 
   add_index "shifts", ["schedule_id"], name: "index_shifts_on_schedule_id"
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "email"
+  end
 
 end
