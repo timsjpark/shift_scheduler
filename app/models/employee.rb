@@ -11,7 +11,7 @@ class Employee < ActiveRecord::Base
 
   validates :password, length: {minimum: 8, message: "must contain at least 8 characters"},
     format: {with: /[!@#$%^&*]+\d+/, message: 'must contain at least one number and one character (!@#$%^&*)'}, if: ->(employee) {
-      employee.persisted? == false
+      !employee.omniauth? && employee.persisted? == false
     }
   validates_confirmation_of :password, if: ->(employee) {
     !employee.omniauth? && employee.password.present?
