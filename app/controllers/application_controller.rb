@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_employee
+  helper_method :current_department
 
   # Set the time zone so the default time for scheduling shifts is set to the
   # current hour and minute of the local time zone
@@ -30,5 +31,10 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound
     session.delete(:id)
     nil
+  end
+
+  def current_department
+    @current_department = current_employee.department
+    # @current_department = Department.where(organization_id: current_employee.organization_id)
   end
 end
