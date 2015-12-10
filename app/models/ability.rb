@@ -13,6 +13,7 @@ class Ability
       can :read, Shift
       can :index, Calendar
       can [:create, :join, :index], Organization
+      can [:switch, :index], Department
     else
       can :create, Employee
     end

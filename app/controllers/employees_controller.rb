@@ -96,7 +96,7 @@ class EmployeesController < ApplicationController
     if params[:employee]
       params.require(:employee).permit(:first_name, :last_name, :email,
                                        :employee_number, :password, :password_confirmation,
-                                       :type, :omniauth, :department_id)
+                                       :type, :omniauth, :department_id, :organization_id)
     end
   end
 end

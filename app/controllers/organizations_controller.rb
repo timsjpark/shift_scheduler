@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_organization, only: [:show]
+  before_action :set_organization, only: [:show, :join]
   def new
     @organization = Organization.new
   end
@@ -28,11 +28,9 @@ class OrganizationsController < ApplicationController
   end
 
   def join
-    @organization = Organization.find_by(params[:id])
     current_employee.organization_id = @organization.id
-    current_employee.type = 'Employee'
     current_employee.save
-    redirect_to schedule_path
+    redirect_to departments_path
   end
 
 

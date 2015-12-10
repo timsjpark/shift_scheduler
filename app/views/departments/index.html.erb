@@ -19,7 +19,8 @@
     <tbody>
     <%= content_tag_for(:tr, @departments) do |department| %>
       <td><%= department.name %></td>
-      <td><%= link_to 'Switch to department', switch_department_path(department) %></td>
+      <% button_text = current_employee.manager? ? 'Switch to' : 'Join' %>
+      <td><%= link_to "#{button_text} Department", switch_department_path(department) %></td>
       <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <% end %>
     </tbody>
