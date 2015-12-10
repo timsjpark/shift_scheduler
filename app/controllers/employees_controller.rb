@@ -22,6 +22,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    @departments = Department.where(organization_id: current_employee.organization_id) if current_employee
   end
 
   # POST /employees
