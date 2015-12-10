@@ -1,21 +1,4 @@
-<div class="container">
-  <div class="">
-    <%= link_to new_department_path, class: 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      New Department
-    <% end %>
-
-    <%= link_to new_employee_path, class: 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      New Employee
-    <% end %>
-
-    <%= link_to new_shift_path, class: 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      New Shift
-    <% end %>
-  </div>
-
+<%= render 'console/toolbar' %>
 
   <!--Department Table-->
   <div class="col-md-5 console-panel" style="">
@@ -28,7 +11,7 @@
         <thead>
         <tr>
           <th>Name</th>
-          <th></th>
+          <th</th>
           <th></th>
         </tr>
         </thead>
