@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   get 'organizations/join/:id' => 'organizations#join', as: 'join_organization'
   get '/switch/:id' => 'departments#switch', as: 'switch_department'
+
+  get 'verification/:token' => 'employees#verify', as: 'verify_email'
 end
