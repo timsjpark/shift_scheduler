@@ -35,7 +35,11 @@ class DepartmentsController < ApplicationController
     schedule = current_employee.schedule
     schedule.department_id = @department.id
     schedule.save
-    redirect_to employees_path
+    if current_employee.manager?
+      redirect_to employees_path
+    else
+      redirect_to schedule_path
+    end
   end
 
   def edit
