@@ -16,19 +16,6 @@
     <% end %>
 
 
-    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      help
-    </button>
-    <div class="collapse" id="collapseExample">
-      <div class="well">
-        <button class='btn btn-primary glyphicon glyphicon-ok' data-toggle="tooltip" data-placement="bottom" title="Current working departments"></button>
-        <button class='btn btn-primary glyphicon glyphicon-transfer' data-toggle="tooltip" data-placement="bottom" title="Switch departments"></button>
-        <button class='btn btn-primary glyphicon glyphicon-pencil' data-toggle="tooltip" data-placement="bottom" title="Edit"></button>
-        <button class='btn btn-primary glyphicon glyphicon-eye-open' data-toggle="tooltip" data-placement="bottom" title="Show"></button>
-        <button class='btn btn-primary glyphicon glyphicon-calendar' data-toggle="tooltip" data-placement="bottom" title="View schedule"></button>
-        <button class='btn btn-primary glyphicon glyphicon-envelope' data-toggle="tooltip" data-placement="bottom" title="Email schedule"></button>
-        <button class='btn btn-danger glyphicon glyphicon-trash' data-toggle="tooltip" data-placement="bottom" title="Remove employee"></button>
-      </div>
-    </div>
+    <%= render 'console/help_button' %>
   </div>
 </div>
