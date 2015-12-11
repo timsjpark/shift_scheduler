@@ -82,10 +82,10 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
-    port: 25,
+    port: 587,
     domain: "herokuapp.com",
     authentication: :plain,
     user_name: 'timsjpark',
-    password: 'sendmegreenmail1!'
+    password: 'sendmebearmail21'
   }
 end

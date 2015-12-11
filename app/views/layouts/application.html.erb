@@ -92,16 +92,18 @@
   </div>
 </nav>
 <div class="container">
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <%= msg %>
-      <script>
-        setTimeout("$('.alert').fadeOut('slow')", 2000)
-      </script>
+  <!--<div style="position: fixed !important; margin-left: 30% !important; margin-right: 30% !important; margin-top: 2% !important;">-->
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <%= msg %>
+        <script>
+          setTimeout("$('.alert').fadeOut('slow')", 3000)
+        </script>
+      <% end %>
     <% end %>
-  <% end %>
+  <!--</div>-->
 
   <% if current_employee && current_employee.department.present? %>
     <div class="well">

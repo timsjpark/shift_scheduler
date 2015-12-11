@@ -3,6 +3,7 @@ class DepartmentsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_department, only: [:show, :edit, :update, :destroy, :switch]
+
   def new
     @department = Department.new
   end
@@ -35,11 +36,8 @@ class DepartmentsController < ApplicationController
     schedule = current_employee.schedule
     schedule.department_id = @department.id
     schedule.save
-    if current_employee.manager?
-      redirect_to console_path
-    else
-      redirect_to schedule_path
-    end
+    redirect_to console_path
+
   end
 
   def edit
