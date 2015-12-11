@@ -41,12 +41,11 @@ Rails.application.configure do
   # config.action_mailer.delivery_method = :letter_opener
 
   config.action_mailer.smtp_settings = {
-      address: 'smtp.sendgrid.net',
-      # port: 25,
-      port: 587,
-      domain: "localhost:3000",
-      authentication: :plain,
-      user_name: 'livingstones245',
-      password: 'sendmegreenmail1!',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: "herokuapp.com",
+    authentication: :plain,
+    user_name: 'timsjpark',
+    password: 'sendmebearmail21'
   }
 end
