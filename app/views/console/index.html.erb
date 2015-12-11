@@ -1,70 +1,80 @@
 <%= render 'console/toolbar' %>
 
-  <!--Department Table-->
-  <div class="col-md-5 console-panel" style="">
-    <div class="page-header">
-      <h1><%= link_to 'Departments', departments_path %></h1>
-    </div>
-
-    <div class="table-responsive">
-      <table id="department_table" class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th</th>
-          <th></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <%= content_tag_for(:tr, @departments) do |department| %>
-          <td><%= department.name %></td>
-          <% if department == current_department %>
-            <td><%= link_to '', switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-ok' %></td>
-          <% else %>
-            <td><%= link_to '', switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-transfer' %></td>
-          <% end %>
-          <td><%= link_to '', edit_department_path(department), class: 'btn btn-primary glyphicon glyphicon-cog' %></td>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+<!--Department Table-->
+<div class="col-md-5 console-panel">
+  <div class="page-header">
+    <h1><%= link_to 'Departments', departments_path %></h1>
   </div>
 
+  <div class="table-responsive" style="height: 210px" overflow="scroll">
+    <table id="department_table" class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
 
-  <!--Employee Table-->
-
-  <div class="col-md-6 console-panel">
-
-    <div class="page-header">
-      <h1><%= link_to 'Employees', employees_path %></h1>
-    </div>
-
-    <div class="table-responsive">
-      <table id="employee_table" class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <%= content_tag_for(:tr, @employees) do |employee| %>
-          <td><%= employee.first_name + ' ' + employee.last_name %></td>
-          <td><%= link_to '', employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-eye-open' %></td>
-          <td><%= link_to '', schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-calendar' %></td>
-          <td><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-cog' %></td>
-          <td><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <tbody>
+      <%= content_tag_for(:tr, @departments) do |department| %>
+        <td><%= department.name %></td>
+        <% if department == current_department %>
+          <td style="width: 10%"><%= link_to '', switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-ok' %></td>
+        <% else %>
+          <td style="width: 10%"><%= link_to '', switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-transfer' %></td>
         <% end %>
-        </tbody>
-      </table>
-    </div>
+        <td style="width: 10%"><%= link_to '', edit_department_path(department), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+      <% end %>
+      </tbody>
+    </table>
   </div>
+  <hr>
 </div>
+
+
+<!--Employee Table-->
+
+<div class="col-md-6 console-panel">
+
+  <div class="page-header">
+    <h1><%= link_to 'Employees', employees_path %></h1>
+  </div>
+
+  <div class="table-responsive" style="height: 210px" overflow="scroll">
+    <table id="employee_table" class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <%= content_tag_for(:tr, @employees) do |employee| %>
+        <td><%= employee.first_name + ' ' + employee.last_name %></td>
+        <td style="width: 10%"><%= link_to '', employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-eye-open' %></td>
+        <td style="width: 10%"><%= link_to '', schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-calendar' %></td>
+        <td style="width: 10%"><%= link_to '', email_schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-envelope' %></td>
+        <td style="width: 10%"><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+        <td style="width: 10%"><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+</div>
+
+
 <div class="container">
+  <div class="page-header">
+    <h1><%= link_to 'Calendar', calendar_path %></h1>
+  </div>
   <%= render 'console/calendar' %>
 </div>
 
