@@ -1,4 +1,6 @@
-<%= render 'console/toolbar' %>
+<% if can? :manage, :all %>
+  <%= render 'console/toolbar' %>
+<% end %>
 
 <!--Department Table-->
 <div class="col-md-5 console-panel">
@@ -12,7 +14,9 @@
       <tr>
         <th>Name</th>
         <th></th>
-        <th></th>
+        <% if can? :manage, :all %>
+          <th></th>
+        <% end %>
       </tr>
       </thead>
 
@@ -24,7 +28,9 @@
         <% else %>
           <td style="width: 10%"><%= link_to '', switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-transfer' %></td>
         <% end %>
-        <td style="width: 10%"><%= link_to '', edit_department_path(department), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+        <% if can? :manage, :all %>
+          <td style="width: 10%"><%= link_to '', edit_department_path(department), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+        <% end %>
       <% end %>
       </tbody>
     </table>
@@ -48,9 +54,11 @@
         <th>Name</th>
         <th></th>
         <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <% if can? :manage, :all %>
+          <th></th>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
       </thead>
 
@@ -59,9 +67,11 @@
         <td><%= employee.first_name + ' ' + employee.last_name %></td>
         <td style="width: 10%"><%= link_to '', employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-eye-open' %></td>
         <td style="width: 10%"><%= link_to '', schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-calendar' %></td>
-        <td style="width: 10%"><%= link_to '', email_schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-envelope' %></td>
-        <td style="width: 10%"><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
-        <td style="width: 10%"><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% if can? :manage, :all %>
+          <td style="width: 10%"><%= link_to '', email_schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-envelope' %></td>
+          <td style="width: 10%"><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+          <td style="width: 10%"><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
       <% end %>
       </tbody>
     </table>
