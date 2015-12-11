@@ -16,7 +16,7 @@ class DepartmentsController < ApplicationController
         current_employee.department_id = @department.id
         current_employee.save
 
-        format.html { redirect_to employees_path, notice: 'Department was successfully created.' }
+        format.html { redirect_to console_path, notice: 'Department was successfully created.' }
         format.json { render :show, status: :created, location: @department }
       else
         format.html { render :new }
