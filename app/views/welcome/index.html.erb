@@ -3,12 +3,26 @@
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
     <div class="item active">
+      <div style="text-align: center">
+        <div>
+        <%= image_tag 'Longs-Peak-Autumn.jpg' %>
+      </div>
+      </div>
+      <div class="carousel-caption well" style="background-color: rgba(255, 255, 255, 0.9)">
+        <h1>Shift Scheduler</h1>
+        <p class="lead">Experiance the freedome of easily creating and managing employee schedules</p>
+        <%= link_to 'Signup', new_employee_path, class: 'btn btn-large btn-primary' %>
+      </div>
+    </div>
+
+    <div class="item">
       <div style="text-align: center">
         <%= image_tag 'mayan_calendar2.jpg' %>
       </div>
