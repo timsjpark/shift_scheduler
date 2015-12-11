@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :schedule do
-    employee nil
+    employee_id nil
   end
 
 end
