@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
+  get 'console' => 'console#index'
 
   get 'signup' => 'employees#new_signup', as: 'new_signup'
   post '/employees' => 'employees#signup', as: 'signup'

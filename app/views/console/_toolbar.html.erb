@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="">
+    <%= link_to new_department_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Department
+    <% end %>
+
+    <%= link_to new_employee_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Employee
+    <% end %>
+
+    <%= link_to new_shift_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Shift
+    <% end %>
+
+
+    <%= render 'console/help_button' %>
+  </div>
+</div>

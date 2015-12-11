@@ -1,11 +1,12 @@
 <div class="page-header">
+  <%= render 'console/help_button' %>
+  <%= link_to console_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
   <%= link_to new_employee_path, class: 'btn btn-primary' do %>
       <span class="glyphicon glyphicon-plus"></span>
       New Employee
-  <% end %>
-  <%= link_to departments_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
   <% end %>
   <h1>Listing employees</h1>
 </div>
@@ -20,6 +21,7 @@
       <th>Employee number</th>
       <th>Hire date</th>
       <th>Removal date</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -38,11 +40,11 @@
         <% else %>
             <td><%= employee.removal_date.strftime('%m/%d/%Y') %></td>
         <% end %>
-        <td><%= link_to 'View Schedule', schedule_path(employee) %></td>
-        <td><%= link_to 'Email Schedule', email_schedule_path(employee) %></td>
-        <td><%= link_to 'Show', employee_path(employee) %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Remove', employee, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to '', schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-calendar' %></td>
+        <td><%= link_to '', email_schedule_path(employee), class: 'btn btn-primary glyphicon glyphicon-envelope' %></td>
+        <td><%= link_to '', employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-eye-open'  %></td>
+        <td><%= link_to '', edit_employee_path(employee), class: 'btn btn-primary glyphicon glyphicon-pencil' %></td>
+        <td><%= link_to '', employee, class: 'btn btn-danger glyphicon glyphicon-trash', method: :delete, data: {confirm: 'Are you sure?'} %></td>
     <% end %>
     </tbody>
   </table>

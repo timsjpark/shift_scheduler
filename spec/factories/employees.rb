@@ -6,6 +6,8 @@ FactoryGirl.define do
     employee_number "1"
     password { Faker::Internet.password}
     password_confirmation { password }
+    organization_id { Faker::Number.between(1, 5)}
+    department_id { Faker::Number.between(1, 30)}
   end
 
 end

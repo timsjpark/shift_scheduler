@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     employee = Employee.find_by_email(params[:email])
     if employee && employee.authenticate(params[:password])
       session[:id] = employee.id
-      redirect_to root_path,
+      redirect_to console_path,
         notice: "Welcome back #{employee.first_name.capitalize}"
     else
       flash[:error] = 'Invalid email or password'
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
     if @employee.persisted?
       session[:id] = @employee.id
-      redirect_to root_path,
+      redirect_to console_path,
           notice: "Logged in as #{@employee.first_name.titleize}."
     else
       render 'employees/new'

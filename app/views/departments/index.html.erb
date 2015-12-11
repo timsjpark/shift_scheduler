@@ -1,4 +1,8 @@
 <div class="page-header">
+  <%= link_to console_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
   <%= link_to new_department_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Department
@@ -11,18 +15,26 @@
     <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
+      <th style="width: 20%"></th>
+      <th style="width: 20%"></th>
     </tr>
     </thead>
 
     <tbody>
     <%= content_tag_for(:tr, @departments) do |department| %>
       <td><%= department.name %></td>
-      <% button_text = current_employee.manager? ? 'Switch to' : 'Join' %>
-      <td><%= link_to "#{button_text} Department", switch_department_path(department) %></td>
-      <td><%= link_to 'Edit', edit_department_path(department) %></td>
+      <% button_text = current_employee.manager? ? 'Switch' : 'Join' %>
+      <% if department == current_department %>
+        <td><%= link_to "#{button_text}", switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-ok' %></td>
+      <% else %>
+        <td><%= link_to "#{button_text}", switch_department_path(department), class: 'btn btn-primary glyphicon glyphicon-transfer' %></td>
+      <% end %>
+      <td><%= link_to 'Edit', edit_department_path(department), class: 'btn btn-primary glyphicon glyphicon-cog' %></td>
     <% end %>
+
+
+
+
     </tbody>
   </table>
 </div>
