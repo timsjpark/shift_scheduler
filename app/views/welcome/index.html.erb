@@ -3,12 +3,54 @@
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
     <div class="item active">
+      <div style="text-align: center">
+        <div>
+        <%= image_tag 'calendar.jpg' %>
+      </div>
+      </div>
+      <div class="carousel-caption well" style="background-color: rgba(255, 255, 255, 0.9)">
+        <h1>Shift Scheduler</h1>
+        <p class="lead">Experiance the freedom of easily creating and managing employee schedules</p>
+        <%= link_to 'Signup', new_employee_path, class: 'btn btn-large btn-primary' %>
+      </div>
+    </div>
+
+    <div class="item">
+      <div style="text-align: center">
+        <div>
+          <%= image_tag 'calendar2.jpg' %>
+        </div>
+      </div>
+      <div class="carousel-caption well" style="background-color: rgba(255, 255, 255, 0.9)">
+        <h1>Easy to navigate calendar</h1>
+        <p class="lead">Add and view shifts in an intuitive calendar</p>
+        <%= link_to 'Signup', new_employee_path, class: 'btn btn-large btn-primary' %>
+      </div>
+    </div>
+
+    <div class="item">
+      <div style="text-align: center">
+        <div>
+          <%= image_tag 'Dashboard.jpg' %>
+        </div>
+      </div>
+      <div class="carousel-caption well" style="background-color: rgba(255, 255, 255, 0.9)">
+        <h1>Central dashboard</h1>
+        <p class="lead">Allows easy managing of multiple departments</p>
+        <%= link_to 'Signup', new_employee_path, class: 'btn btn-large btn-primary' %>
+      </div>
+    </div>
+
+    <div class="item">
       <div style="text-align: center">
         <%= image_tag 'mayan_calendar2.jpg' %>
       </div>
@@ -20,7 +62,7 @@
     </div>
 
     <div class="item">
-      <%= image_tag('calendar.jpg')%>
+      <%= image_tag 'waterfall-in-mountains.jpg'%>
       <div class="carousel-caption well" style="background-color: rgba(255, 255, 255, 0.9)">
         <h1>Multifaceted synergistic solutions</h1>
         <p class="lead">Dynamic modeling to match your scheduling paradigm</p>
