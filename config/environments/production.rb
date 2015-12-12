@@ -85,7 +85,7 @@ Rails.application.configure do
     port: 587,
     domain: "herokuapp.com",
     authentication: :plain,
-    user_name: 'timsjpark',
-    password: 'sendmebearmail21'
+    user_name: ENV['SENDGRID_USER'],
+    password: ENV['SENDGRID_PASSWORD']
   }
 end
