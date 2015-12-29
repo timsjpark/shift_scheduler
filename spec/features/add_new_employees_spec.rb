@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 feature 'Adding employees' do
+  scenario 'should not let regular users add a new employee' do
+    employee = FactoryGirl.create(:employee)
+
+    visit login_path
+
+    fill_in 'Email', with: employee.email
+    fill_in 'Password', with: employee.password
+
+    click_button('Login')
+
+    expect(page).to have_text("#{employee.email}")
+
+    visit '/employees'
+
+    expect(page).to have_text("You are not authorized to access this page")
+  end
+
   scenario 'should let user add a new employee' do
     employee = FactoryGirl.create(:employee)
     employee2 = FactoryGirl.create(:employee)
@@ -12,10 +29,10 @@ feature 'Adding employees' do
 
     click_button('Login')
 
-    expect(page).to have_text("Signed in as #{employee.email}")
+    expect(page).to have_text("#{employee.email}")
 
     visit '/employees'
-
+# The problem here is that newly signed up users do not have manager access
     click_link 'New Employee'
 
     fill_in 'First Name', with: employee2.first_name
