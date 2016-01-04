@@ -19,17 +19,27 @@ feature 'Adding employees' do
   end
 
   scenario 'should let user add a new employee' do
-    employee = FactoryGirl.create(:employee)
+    manager = FactoryGirl.create(:manager)
+
+# The code above is only storing the FactoryGirl data into the manager object. We need
+# a way to create a new manager that is automatically stored in the temp database. I
+# see two solutions. The first is to have a new manager go through every step of signing
+# up as a new user. That seems cumbersome and not sustainable.
+
+# The other option is to have the temp database create a new Department, Organization, and
+# Manager and then call on the manager, which should be simple as Employee.first. I'm not
+# exactly sure how to do this at the moment.
+
     employee2 = FactoryGirl.create(:employee)
 
     visit login_path
 
-    fill_in 'Email', with: employee.email
-    fill_in 'Password', with: employee.password
+    fill_in 'Email', with: manager.email
+    fill_in 'Password', with: manager.password
 
     click_button('Login')
 
-    expect(page).to have_text("#{employee.email}")
+    expect(page).to have_text("#{manager.email}")
 
     visit '/employees'
 # The problem here is that newly signed up users do not have manager access
