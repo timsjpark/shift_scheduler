@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Signing up as a manager' do
-  scenario 'should allow a new user to create a new organization and department' do
+  scenario 'should allow a new user to sign up as a manager' do
     
   end
 end
