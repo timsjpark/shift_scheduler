@@ -18,24 +18,12 @@ feature 'Adding employees' do
     expect(page).to have_text("You are not authorized to access this page")
   end
 
-  scenario 'should let user add a new employee' do
-    # manager = FactoryGirl.create(:manager)
-
-# The code above is only storing the FactoryGirl data into the manager object. We need
-# a way to create a new manager that is automatically stored in the temp database. I
-# see two solutions. The first is to have a new manager go through every step of signing
-# up as a new user. That seems cumbersome and not sustainable.
-
-# The other option is to have the temp database create a new Department, Organization, and
-# Manager and then call on the manager, which should be simple as Employee.first. I'm not
-# exactly sure how to do this at the moment.
-
+  scenario 'should let a manager add a new employee' do
     @manager = FactoryGirl.build(:manager)
     @manager.save
-    @department = Department.create(name: 'Admin', organization_id: 1)
-    @department.save
-    @organization = Organization.create(name: 'Justice League')
+    @organization = FactoryGirl.build(:organization)
     @organization.save
+    @department = Department.create(name: 'Sanitation', organization_id: @organization.id)
 
     employee2 = FactoryGirl.create(:manager)
 
@@ -49,7 +37,7 @@ feature 'Adding employees' do
     expect(page).to have_text("#{@manager.email}")
 
     visit '/employees'
-# The problem here is that newly signed up users do not have manager access
+
     click_link 'New Employee'
 
     fill_in 'First Name', with: employee2.first_name
