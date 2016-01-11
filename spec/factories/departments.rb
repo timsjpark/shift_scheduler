@@ -6,7 +6,7 @@ department_names = [
 FactoryGirl.define do
   factory :department do
     name { department_names.sample }
-    organization_id { Faker::Number.between(1, 5)}
+    organization_id { Faker::Number.between(1, 5) }
   end
 
 end
