@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Signing up as a manager' do
   scenario 'should allow a new user to sign up as a manager' do
     manager = FactoryGirl.build(:manager)
+    organization = FactoryGirl.build(:organization)
+    department = FactoryGirl.build(:department)
 
     visit '/'
 
@@ -19,18 +21,18 @@ feature 'Signing up as a manager' do
 
     click_link 'New Organization'
 
-    fill_in 'Name', with: 'SKB'
+    fill_in 'Name', with: organization.name
 
     click_button 'Create Organization'
 
     click_link 'Add Department'
 
-    fill_in 'Name', with: 'Sanitation'
+    fill_in 'Name', with: department.name
 
     click_button 'Create Department'
 
     expect(page).to have_content(manager.email)
-    expect(page).to have_content('Sanitation')
+    expect(page).to have_content(department.name)
     expect(page).to have_content('Shifts')
   end
 end
